@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <%- include('../partials/head'); %>
+</head>
+<body>
+   <header>
+       <%- include('../partials/header'); %>
+   </header>
+   <main class="container mt-3">
+       <div class="jumbotron py-3">
+         <h1 class="display-5">Listado de Productos</h1>
+         <% if (productos && productos.length > 0) { %>
+             <table id="tablita" border="1" cellpadding="5" cellspacing="0" class="table table-striped">
+                 <thead>
+                     <tr>
+                         <th>Nombre</th>
+                         <th>Descripción</th>
+                         <th>Precio</th>
+                         <th>Stock</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     <% productos.forEach(function(producto) { %>
+                     <tr>
+                         <td><%= producto.nombre %></td>
+                         <td><%= producto.descripcion || '—' %></td>
+                         <td><%= producto.precio %></td>
+                         <td><%= producto.stock %></td>
+                     </tr>
+                     <% }); %>
+                 </tbody>
+             </table>
+         <% } else { %>
+             <p>No hay productos registrados.</p>
+         <% } %>
+       </div>
+   </main>
+   <footer>
+       <%- include('../partials/footer'); %>
+   </footer>
+</body>
+</html>

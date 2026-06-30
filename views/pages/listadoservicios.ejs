@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <%- include('../partials/head'); %>
+</head>
+<body>
+   <header>
+       <%- include('../partials/header'); %>
+   </header>
+   <main class="container mt-3">
+       <div class="jumbotron py-3">
+         <h1 class="display-5">Listado de Servicios</h1>
+         <% if (servicios && servicios.length > 0) { %>
+             <table id="tablita" border="1" cellpadding="5" cellspacing="0" class="table table-striped">
+                 <thead>
+                     <tr>
+                         <th>Nombre</th>
+                         <th>Descripción</th>
+                         <th>Precio</th>
+                         <th>Duración</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     <% servicios.forEach(function(servicio) { %>
+                     <tr>
+                         <td><%= servicio.nombre %></td>
+                         <td><%= servicio.descripcion || '—' %></td>
+                         <td><%= servicio.precio %></td>
+                         <td><%= servicio.duracion || '—' %></td>
+                     </tr>
+                     <% }); %>
+                 </tbody>
+             </table>
+         <% } else { %>
+             <p>No hay servicios registrados.</p>
+         <% } %>
+       </div>
+   </main>
+   <footer>
+       <%- include('../partials/footer'); %>
+   </footer>
+</body>
+</html>

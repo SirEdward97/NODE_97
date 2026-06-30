@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<body>
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+    <main class="container mt-3">
+        <div class="jumbotron py-3">
+            <h1 class="display-5">Listado de Clientes</h1>
+            <% if (clientes && clientes.length> 0) { %>
+                <table id="tablita" border="1" cellpadding="5" cellspacing="0" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Teléfono</th>
+                            <th>Detalles</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% clientes.forEach(function(cliente) { %>
+                            <tr>
+                                <td>
+                                    <%= cliente.nombre %>
+                                </td>
+                                <td>
+                                    <%= cliente.email %>
+                                </td>
+                                <td>
+                                    <%= cliente.telefono || 'No registra' %>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#myModal">
+                                        ver
+                                    </button>
+                                    <!-- The Modal -->
+                                    <div class="modal" id="myModal">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Detalles</h4>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                <strong>Nombre:</strong>
+                                                <%= cliente.nombre %>
+                                                <strong>Email:</strong>
+                                                <%= cliente.email %>
+                                                <strong>Telefono:</strong>
+                                                <%= cliente.telefono || 'No registra' %>
+                                                </div>           
+                                                                
+                                </td>
+
+                                
+
+
+                            </tr>
+                            <% }); %>
+                    </tbody>
+                </table>
+                <% } else { %>
+                    <p>No hay clientes registrados.</p>
+                    <% } %>
+        </div>
+    </main>
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+    <script>
+        function mostrarModal(cliente) {
+            document.getElementById('modalNombre').textContent = cliente.nombre;
+            document.getElementById('modalEmail').textContent = cliente.email;
+            document.getElementById('modalTelefono').textContent = cliente.telefono || 'No registra';
+        }
+
+
+    </script>
+</body>
+
+</html>
