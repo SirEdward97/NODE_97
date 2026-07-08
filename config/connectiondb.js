@@ -5,7 +5,7 @@ dns.setServers(['8.8.8.8', '8.8.4.4']);
 const conectarDB = async () => {
   try {
   
-    const URI = 'mongodb+srv://Edwardavid97:CGwP84XzLKNxSpfn@cluster0.upfmeca.mongodb.net/prueba123?retryWrites=true&w=majority';
+    const URI = process.env.MONGODB_URI;
     
     await mongoose.connect(URI);
     console.log('Conectado a MongoDB');
