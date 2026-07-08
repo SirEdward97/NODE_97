@@ -30,14 +30,15 @@ exports.crearCliente = async (req, res) => {
 };
 
 
-exports.actualizarCliente = async (req, res) => {
+exports.actualizarClienteW= async (req, res) => {
   try {
-    const clienteActualizado = await Cliente.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.json(clienteActualizado);
+    const  { id , nombre, email, telefono } = req.body;
+    await Cliente.findByIdAndUpdate(id, { nombre, email, telefono });
+    res.redirect('/listadoclientes');
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(500).send({ "error al actualizar cliente ": error.message });
   }
-};
+  };
 
 
 exports.eliminarCliente = async (req, res) => {
@@ -60,4 +61,4 @@ exports.vistaListadoClientes = async (req, res) => {
 };
 exports.formulario = async (req, res) => {
   res.render('pages/registrarcliente');
-}    
+}
