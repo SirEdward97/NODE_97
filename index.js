@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const  conectarDB = require('./config/connectiondb');
+const  conectarDB = require('./config/connectiondb.js');
 
 
 const clienteController = require('./controllers/cliente.controller');
