@@ -67,6 +67,15 @@ exports.eliminarServicio = async (req, res) => {
   }
 };
 
+exports.tiendaCatalogo= async (req, res) => {
+  try {
+    const listado = await Servicio.find(); 
+    res.render('pages/tienda');
+  } catch (error) {
+    res.status(500).send("Error al cargar la tienda: " + error.message);
+  }
+};
+
 exports.vistaListadoServicios = async (req, res) => {
   try {
     const listado = await Servicio.find();

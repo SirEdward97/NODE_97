@@ -19,6 +19,7 @@ router.post('/clientes/eliminar', clienteController.eliminarCliente);
 router.get('/servicios', servicioController.obtenerServicios);
 router.post('/servicios/seed', servicioController.insertarDatosIniciales);
 router.get('/listadoservicios', servicioController.vistaListadoServicios);
+router.get ('/tiendaCatalogo',servicioController.tiendaCatalogo);
 
 // --- RUTAS DE PRODUCTOS ---
 router.get('/productos', productoController.obtenerProductos);

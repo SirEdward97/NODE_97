@@ -32,6 +32,7 @@ app.post('/clientes', clienteController.crearCliente);
 app.get('/servicios', servicioController.obtenerServicios);
 app.post('/servicios/seed', servicioController.insertarDatosIniciales);
 app.get('/listadoservicios', servicioController.vistaListadoServicios);
+app.get('/tienda',servicioController.tiendaCatalogo)
 
 app.get('/productos', productoController.obtenerProductos);
 app.post('/productos', productoController.crearProducto);

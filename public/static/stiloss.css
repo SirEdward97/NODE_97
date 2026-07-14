@@ -1,0 +1,45 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: rgb(21, 202, 226);
+}
+
+h1{
+    text-align: center;
+    font-weight: 900;
+    color: rgb(250, 187, 12);
+}
+
+#app {
+  display: flex;
+  flex-wrap: wrap; /* 👈 permite que bajen */
+  gap: 20px;
+}
+
+.card {
+    background-color: rgb(231, 235, 182);
+    cursor: pointer;
+    text-align: center;
+    align-items: center;
+    width: 22%; /* 👈 clave para que entren 4 */
+    border: 1px solid #67c1f5;
+    padding: 10px;
+    display: flex; /* 👈 importante */
+    flex-direction: column; /* 👈 vertical */
+    justify-content: stretch; /
+}
+.card img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+#total {
+    position: sticky;
+    bottom: 15px;     
+    left: auto;
+    background: #b5e4b3;
+    color: rgb(5, 5, 5);
+    padding: 10px 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    z-index : 1000; /* para que esté por encima de otros elementos */
+}

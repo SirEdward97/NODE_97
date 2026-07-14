@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/stiloss.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <%- include('../partials/header'); %>
+    
+</head>
+<title>perro negro</title>
+
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                    <button class="btn btn-outline-success" type="submit">
+                        <font dir="auto" style="vertical-align: inherit;">
+                            <font dir="auto" style="vertical-align: inherit;">Buscar</font>
+                        </font>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+    </nav>
+
+    <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#carritoCanvas">
+        Cart
+    </button>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="carritoCanvas">
+        <div class="offcanvas-header">
+            <h5>Carrito 🛒</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+
+        <div class="offcanvas-body" id="carrito">
+            <!-- Aquí se renderiza tu carrito -->
+        </div>
+    </div>
+    <div id="app"></div>
+
+
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">inicio de sesión</h4>
+                    <button type="b<body>
+
+    <h1>Tienda Prado </h1>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Alternar navegación">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <font dir="auto" style="vertical-align: inherit;">
+                                <font dir="auto" style="vertical-align: inherit;">
+                                    Menú desplegable
+                                </font>
+                            </font>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">
+                                    <font dir="auto" style="vertical-align: inherit;">
+                                        <font dir="auto" style="vertical-align: inherit;">Acción</font>
+                                    </font>
+                                </a></li>
+                            <li><a class="dropdown-item" href="#">
+                                    <font dir="auto" style="vertical-align: inherit;">
+                                        <font dir="auto" style="vertical-align: inherit;">Otra acción</font>
+                                    </font>
+                                </a></li>
+                        </ul>
+                    </li>
+                    <button type="buttutton" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <input type="form"  placeholder="usuario">
+                    <input type="form" placeholder="contraseña">
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button"  class="btn btn-primary" 
+                    href="login.html"  >Entrar</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        const car = [];
+        // async → permite usar await dentro de la función
+        // y hace que la función trabaje con cosas "asíncronas" (como APIs)
+        async function GetData() {
+            console.log("Inicio de la busqueda ");
+            // await → espera a que fetch termine
+            // fetch() hace una petición a la API (trae los datos)
+            let res = await fetch("http://localhost:8000/listadoproductos");
+            let data = await res.json();
+
+            console.log(data);
+
+            data.forEach((productos) => {
+                let card = document.createElement("div");
+                card.classList.add("card");
+                let title = document.createElement("h2");
+                title.textContent = productos.title;
+                let precio = document.createElement("p");
+                precio.textContent = `Precio: $${productos.price}`;
+                let image = document.createElement("img");
+                image.src = productos.image;
+                let btn = document.createElement("button");
+                btn.innerHTML = "Agregar";
+                btn.classList.add("card");
+
+                card.appendChild(title);
+                card.appendChild(image);
+                card.appendChild(precio);
+                card.appendChild(btn);
+
+                let accion = btn.addEventListener("click", function () {
+                    AgregarCar(productos);
+                });
+
+                let app = document.querySelector("#app");
+                app.appendChild(card);
+            });
+        }
+        GetData();
+
+        // Función que se ejecuta al hacer click
+        function AgregarCar(productos) {
+            // Buscar si hay un producto en el carrito
+            let buscarP = car.find(p => p.id === productos.id)
+
+            // si en buscarP hay productos, se les sigue agregando productos
+            if (buscarP) {
+                buscarP.cantidad++
+            }
+            // si no hay producto, se agrega un producto
+            else {
+                car.push({ ...productos, cantidad: 1 })
+            }
+
+            // Llama a la función Mostrar para actualizar el carrito en pantalla
+            Mostrar();
+        }
+        function Mostrar() {
+            let contenedor = document.querySelector("#carrito");
+            // limpiar antes de volver a pintar
+            contenedor.innerHTML = "";
+
+            let total = 0;
+
+            car.forEach((producto) => {
+                let item = document.createElement("div");
+                contenedor.appendChild(item);
+
+                let subtotal = producto.price * producto.cantidad;
+                total += subtotal;
+                contenedor.innerHTML += `
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <p>${producto.title}</p>
+          <p>Cantidad: ${producto.cantidad}</p>
+          <img src="${producto.image}" alt="${producto.title}" style="width: 50px; height: auto;">
+          <p>Precio: $${producto.price}</p>
+        </div>
+          <button type="button" class="btn btn-success" onclick="añadir(${producto.id})">+</button>
+          <button type="button" class="btn btn-danger" onclick="quitar(${producto.id})">-</button>
+
+        </div>
+       <hr>`;
+            });
+            vertotal(total)
+
+
+            let totalAnterior = document.getElementById("total");
+            if (totalAnterior) {
+                totalAnterior.remove();
+            }
+            let totalh4 = document.createElement("h4");
+            totalh4.id = "total";
+            totalh4.textContent = `Total del carrito: $${total.toFixed(2)}`;
+            contenedor.appendChild(totalh4);
+        }
+
+        Mostrar()
+        function vertotal(total) {
+            let totalh4 = document.querySelector("#carrito h4")
+            if (totalh4) {
+                totalh4.textContent = `Total carrito: $${total}`;
+            }
+
+        }
+
+        function quitar(id) {
+            let producto = car.find(p => p.id === id)
+            if (producto) {
+                producto.cantidad--
+                if (producto.cantidad === 0) {
+                    car.splice(car.indexOf(producto), 1)
+                }
+            }
+            Mostrar()
+        }
+
+        function añadir(id) {
+            let producto = car.find(p => p.id === id)
+            if (producto) {
+                producto.cantidad++
+            }
+            Mostrar()
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
