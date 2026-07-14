@@ -1,0 +1,21 @@
+<div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="modalEliminarTitulo" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="formeliminar" action="/api/v1/clientes/eliminar" method="POST">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="modalEliminarTitulo">¿Eliminar Cliente?</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="eliminarId">
+                    
+                    <p>¿Estás seguro de que deseas eliminar permanentemente a <strong id="eliminarNombre" class="text-danger"></strong>?</p>
+                    <p class="text-muted"><small>Esta acción no se puede deshacer en el sistema.</small></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-danger">Eliminar Definitivamente</button>
+                </div>
+            </form> </div>
+    </div>
+</div>

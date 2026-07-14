@@ -1,0 +1,32 @@
+<div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarTitulo" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="formeditar" action="/api/v1/clientes/editar" method="POST">
+                <div class="modal-header bg-warning text-white">
+                    <h5 class="modal-title" id="modalEditarTitulo">Editar Cliente</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="editarId">
+                    
+                    <div class="mb-3">
+                        <label for="editarNombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" name="nombre" id="editarNombre" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editarEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" id="editarEmail" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editarTelefono" class="form-label">Teléfono</label>
+                        <input type="text" class="form-control" name="telefono" id="editarTelefono">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-warning text-white">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

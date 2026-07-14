@@ -1,33 +1,47 @@
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark mb-3">
- <div class="container-fluid">
-  <a class="navbar-brand" href="/"  ></a>
-   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-     <span class="navbar-toggler-icon"></span>
-   </button>
-   <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
-     <ul class="navbar-nav mx-auto">
-       <li class="nav-item dropdown">
-         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Clientes</a>
-         <ul class="dropdown-menu">
-           <li><a class="dropdown-item" href="/api/v1/formulario">Registrar</a></li>
-           <li><a class="dropdown-item" href="/api/v1/listadoclientes">Listar</a></li>
-         </ul>
-       </li>
-       <li class="nav-item dropdown">
-         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Productos</a>
-         <ul class="dropdown-menu">
-           <li><a class="dropdown-item" href="/api/v1/productos/formulario">Registrar</a></li>
-           <li><a class="dropdown-item" href="/api/v1/listadoproductos">Listar</a></li>
-         </ul>
-       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Servicios</a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="/api/v1/servicios">Listar</a></li>
-        </ul>
-      </li>
-     </ul>
-     
-   </div>
- </div>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark mb-3 shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center" href="/">
+      <span class="material-symbols-rounded text-warning me-2">public</span>
+      <span class="fw-bold">STD</span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
+      <ul class="navbar-nav mx-auto">
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            <i class="bi bi-people-fill me-1"></i> Clientes
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/formulario">Registrar Cliente</a></li>
+            <li><a class="dropdown-item" href="/listadoclientes">Listado de Clientes</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            <i class="bi bi-box-seam-fill me-1"></i> Productos
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/productos/formulario">Registrar Producto</a></li>
+            <li><a class="dropdown-item" href="/listadoproductos">Listado de Productos</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            <i class="bi bi-gear-fill me-1"></i> Servicios
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/listadoservicios">Ver Servicios</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+  </div>
 </nav>

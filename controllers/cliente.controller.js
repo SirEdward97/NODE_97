@@ -1,23 +1,20 @@
-
 const Cliente = require('../models/cliente.model');
 
 exports.home = async (req, res) => {
   res.render('pages/index');
 };
+
 exports.obtenerClientes = async (req, res) => {
   try {
     const clientes = await Cliente.find();
-    // Si el cliente acepta HTML (normal en navegadores), renderiza la vista
     if (req.accepts && req.accepts('html')) {
       return res.render('pages/listadoclientes', { clientes });
     }
-    // Por defecto devuelve JSON (API)
     return res.json(clientes);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
-
 
 exports.crearCliente = async (req, res) => {
   try {
@@ -29,27 +26,34 @@ exports.crearCliente = async (req, res) => {
   }
 };
 
-
-exports.actualizarClienteW= async (req, res) => {
+exports.editarCliente = async (req, res) => {
   try {
-    const  { id , nombre, email, telefono } = req.body;
-    await Cliente.findByIdAndUpdate(id, { nombre, email, telefono });
+    const { id, nombre, email, telefono } = req.body;
+    await Cliente.findByIdAndUpdate(id, { 
+        nombre, 
+        email, 
+        telefono: telefono || null 
+    });
     res.redirect('/listadoclientes');
   } catch (error) {
-    res.status(500).send({ "error al actualizar cliente ": error.message });
-  }
-  };
-
-
-exports.eliminarCliente = async (req, res) => {
-  try {
-    await Cliente.findByIdAndDelete(req.params.id);
-    res.json({ mensaje: "Cliente eliminado correctamente" });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).send("Error al actualizar cliente: " + error.message);
   }
 };
 
+exports.eliminarCliente = async (req, res) => {
+  try {
+    const { id } = req.body; 
+
+    if (!id) {
+      return res.status(400).send("ID de cliente no proporcionado");
+    }
+    await Cliente.findByIdAndDelete(id);
+    res.redirect('/listadoclientes');
+  } catch (error) {
+    console.error("Error al eliminar cliente:", error);
+    res.status(500).send("Ocurrió un error al intentar eliminar el cliente");
+  }
+};
 
 exports.vistaListadoClientes = async (req, res) => {
   try {
@@ -59,6 +63,7 @@ exports.vistaListadoClientes = async (req, res) => {
     res.status(500).send("Error al cargar la página de clientes: " + error.message);
   }
 };
+
 exports.formulario = async (req, res) => {
   res.render('pages/registrarcliente');
-}
+};

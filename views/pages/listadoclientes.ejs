@@ -9,11 +9,12 @@
     <header>
         <%- include('../partials/header'); %>
     </header>
+
     <main class="container mt-3">
         <div class="jumbotron py-3">
             <h1 class="display-5 mb-4">Listado de Clientes</h1>
-            
-            <% if (clientes && clientes.length > 0) { %>
+
+            <% if (clientes && clientes.length> 0) { %>
                 <table id="tablita" class="table table-striped table-bordered align-middle">
                     <thead class="table-dark">
                         <tr>
@@ -26,40 +27,43 @@
                     <tbody>
                         <% clientes.forEach(function(cliente) { %>
                             <tr>
-                                <td><%= cliente.nombre %></td>
-                                <td><%= cliente.email %></td>
-                                <td><%= cliente.telefono || 'No registra' %></td>
+                                <td>
+                                    <%= cliente.nombre %>
+                                </td>
+                                <td>
+                                    <%= cliente.email %>
+                                </td>
+                                <td>
+                                    <%= cliente.telefono || 'No registra' %>
+                                </td>
                                 <td class="text-center">
-                                  
-                                    <button type="button" class="btn btn-sm btn-info text-white" 
-                                        data-bs-toggle="modal" data-bs-target="#myModal"
+
+                                    <button type="button" class="btn btn-sm btn-info text-white" data-bs-toggle="modal"
+                                        data-bs-target="#myModal"
                                         onclick="mostrarModal('<%= cliente.nombre %>', '<%= cliente.email %>', '<%= cliente.telefono %>')">
                                         Ver
                                     </button>
 
-                                    <button type="button" class="btn btn-sm btn-info text-white"
-                                        data-bs-toggle="modal" data-bs-target="#myModal"
-                                        onclick="editarCliente('<%= cliente.nombre %>', '<%= cliente.email %>', '<%= cliente.telefono %>')"
-                                        
-                                        >
+                                    <button type="button" class="btn btn-sm btn-warning text-white"
+                                        data-bs-toggle="modal" data-bs-target="#modalEditar"
+                                        onclick="prepararEditar('<%= cliente._id %>', '<%= cliente.nombre %>', '<%= cliente.email %>', '<%= cliente.telefono %>')">
                                         Editar
                                     </button>
 
-                                    <button type="button" class="btn btn-sm btn-info text-white" 
-                                        data-bs-toggle="modal" data-bs-target="#myModal"
-                                        onclick="eliminarCliente('<%= cliente.nombre %>', '<%= cliente.email %>', '<%= cliente.telefono %>')">
+                                    <button type="button" class="btn btn-sm btn-danger text-white"
+                                        data-bs-toggle="modal" data-bs-target="#modalEliminar"
+                                        onclick="prepararEliminar('<%= cliente._id %>', '<%= cliente.nombre %>')">
                                         Eliminar
                                     </button>
 
-                                    
                                 </td>
                             </tr>
-                        <% }); %>
+                            <% }); %>
                     </tbody>
                 </table>
-            <% } else { %>
-                <p>No hay clientes registrados.</p>
-            <% } %>
+                <% } else { %>
+                    <p>No hay clientes registrados.</p>
+                    <% } %>
         </div>
     </main>
 
@@ -82,32 +86,32 @@
         </div>
     </div>
 
-    <footer>
-        <%- include('../partials/footer'); %>
-    </footer>
+    <%- include('./formeditar'); %>
+        <%- include('./formeliminar'); %>
 
-    <!-- Script para actualizar los datos en el Modal -->
-    <script>
-        function mostrarModal(nombre, email, telefono) {
-            document.getElementById('modalNombre').textContent = nombre;
-            document.getElementById('modalEmail').textContent = email;
-            document.getElementById('modalTelefono').textContent = telefono || 'No registra';
+            <footer>
+                <%- include('../partials/footer'); %>
+            </footer>
 
-        }
-        function editarCliente (nombre, email, telefono)
-        {
-            document.getElementById('modalNombre').textContent = nombre;
-            document.getElementById('modalEmail').textContent = email;
-            document.getElementById('modalTelefono').textContent = telefono || 'No registra';   
-        }
-        function eliminarCliente (nombre, email, telefono)
-        {
-            document.getElementById('modalNombre').textContent = nombre;
-            document.getElementById('modalEmail').textContent = email;
-            document.getElementById('modalTelefono').textContent = telefono || 'No registra';   
-        }
+            <script>
+                function mostrarModal(nombre, email, telefono) {
+                    document.getElementById('modalNombre').textContent = nombre;
+                    document.getElementById('modalEmail').textContent = email;
+                    document.getElementById('modalTelefono').textContent = telefono || 'No registra';
+                }
 
-    </script>
+                function prepararEditar(id, nombre, email, telefono) {
+                    document.getElementById('editarId').value = id;
+                    document.getElementById('editarNombre').value = nombre;
+                    document.getElementById('editarEmail').value = email;
+                    document.getElementById('editarTelefono').value = (telefono === 'undefined' || !telefono) ? '' : telefono;
+                }
+
+                function prepararEliminar(id, nombre) {
+                    document.getElementById('eliminarId').value = id;
+                    document.getElementById('eliminarNombre').textContent = nombre;
+                }
+            </script>
 </body>
 
 </html>

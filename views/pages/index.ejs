@@ -1,20 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-   <%- include('../partials/head'); %>
-</head>
-<body>
-   <header>
-       <%- include('../partials/header'); %>
-   </header>
+<html lang="es">
 
-     <main class="container mt-3">
-             <div class="jumbotron mt-0 py-3 text-center">
-                 <h1 class="mt-0 display-4">Bienvenidos</h1>
-             </div>
-     </main>
-   <footer>
-       <%- include('../partials/footer'); %>
-   </footer>
-</body>
-</html>
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<body class="d-flex flex-column min-vh-100 bg-light">
+    
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main class="flex-grow-1">
+        <section class="py-5 text-center container-fluid bg-dark text-white position-relative overflow-hidden" style="background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('https://picsum.photos/1920/1080') no-repeat center center/cover; min-height: 500px;">
+            <div class="row py-lg-5 h-100 align-items-center">
+                <div class="col-lg-6 col-md-8 mx-auto my-5">
+                    <h1 class="display-3 fw-bold text-warning mb-3">Bienvenidos a STD</h1>
+                    <p class="lead text-light mb-4">Gestiona tus clientes, servicios y productos desde un solo lugar de manera rápida, segura y sumamente intuitiva.</p>
+                    <p>
+                        <a href="/listadoclientes" class="btn btn-warning btn-lg px-4 me-sm-2 text-white fw-bold">Ver Clientes</a>
+                        <button type="button" class="btn btn-outline-light btn-lg px-4" data-bs-toggle="modal" data-bs-target="#modalServiciosPremium">
+                            <i class="bi bi-info-circle-fill me-1"></i> Saber Más
+                        </button>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5 bg-white">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold">¿Qué puedes hacer aquí?</h2>
+                    <p class="text-muted lead">Nuestra herramienta te ayuda a centralizar la administración de tu negocio</p>
+                </div>
+
+                <div class="row g-4 justify-content-center">
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm transition-hover">
+                            <div class="card-body p-4 text-center">
+                                <div class="feature-icon bg-warning bg-gradient text-white rounded-circle p-3 d-inline-flex align-items-center justify-content-center mb-4" style="width: 60px; height: 60px;">
+                                    <i class="bi bi-people-fill fs-3"></i>
+                                </div>
+                                <h3 class="h5 fw-bold">Gestión de Clientes</h3>
+                                <p class="text-muted">Visualiza, edita, registra y elimina la información de tus clientes habituales de forma rápida con nuestros formularios dinámicos.</p>
+                                <a href="/listadoclientes" class="btn btn-sm btn-outline-warning mt-2">Acceder</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm transition-hover">
+                            <div class="card-body p-4 text-center">
+                                <div class="feature-icon bg-info bg-gradient text-white rounded-circle p-3 d-inline-flex align-items-center justify-content-center mb-4" style="width: 60px; height: 60px;">
+                                    <i class="bi bi-gear-fill fs-3"></i>
+                                </div>
+                                <h3 class="h5 fw-bold">Servicios Ofrecidos</h3>
+                                <p class="text-muted">Controla el catálogo de servicios que prestas. Añade datos de prueba rápidamente con nuestro botón de inicialización masiva.</p>
+                                <a href="/listadoservicios" class="btn btn-sm btn-outline-info mt-2">Ver Catálogo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm transition-hover">
+                            <div class="card-body p-4 text-center">
+                                <div class="feature-icon bg-success bg-gradient text-white rounded-circle p-3 d-inline-flex align-items-center justify-content-center mb-4" style="width: 60px; height: 60px;">
+                                    <i class="bi bi-box-seam-fill fs-3"></i>
+                                </div>
+                                <h3 class="h5 fw-bold">Inventario de Productos</h3>
+                                <p class="text-muted">Mantén al día el stock de productos de tu tienda. Registra productos nuevos utilizando la interfaz de usuario intuitiva.</p>
+                                <a href="/listadoproductos" class="btn btn-sm btn-outline-success mt-2">Explorar Stock</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5 bg-warning text-white text-center">
+            <div class="container py-3">
+                <h2 class="fw-bold mb-3">¿Listo para empezar a ordenar tu información?</h2>
+                <p class="lead mb-4 text-light-50">Crea un nuevo perfil de cliente ahora mismo y experimenta el flujo completo.</p>
+                <a href="/formulario" class="btn btn-dark btn-lg px-5 py-3 shadow
